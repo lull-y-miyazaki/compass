@@ -76,12 +76,13 @@ class User extends Authenticatable
         //(第一引数'リレーションするテーブル',第二引数'中間テーブル',第三引数'リレーションを定義しているid',第四引数'結合する外部id')
     }
 
-    // いいねしているかどうか
+    //投稿にいいねしたかの確認
     public function is_Like($post_id)
     {
         return Like::where('like_user_id', Auth::id())->where('like_post_id', $post_id)->first(['likes.id']);
     }
 
+    //ログインユーザーのいいね取得
     public function likePostId()
     {
         return Like::where('like_user_id', Auth::id());

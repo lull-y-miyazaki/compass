@@ -44,7 +44,7 @@ class Post extends Model
         return $this->postComments()->count();
     }
 
-    // いいねのリレーション
+    // ポストといいねのリレーション
     public function likes()
     {
         return $this->hasMany('App\Models\Posts\Like', 'like_post_id');

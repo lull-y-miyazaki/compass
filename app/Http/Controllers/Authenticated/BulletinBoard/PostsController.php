@@ -19,8 +19,9 @@ class PostsController extends Controller
     {
         $posts = Post::with('user', 'postComments')->get();
         // $categories = MainCategory::get();
+        //下記に変更サブカテゴリーも一緒に
         $categories = MainCategory::with('subCategories')->get();
-        //dd($categories);
+        // dd($categories);
         $like = new Like;
         $post_comment = new Post;
         if (!empty($request->keyword)) {
@@ -37,6 +38,22 @@ class PostsController extends Controller
         } else if ($request->my_posts) {
             $posts = Post::with('user', 'postComments')
                 ->where('user_id', Auth::id())->get();
+        } else if ($request->categories_posts) {
+            //サブカテゴリーでの検索
+            $sub_category = $request->categories_posts;
+            $posts = Post::with('user', 'postComments')
+                ->whereHas('subCategories', function ($q) use ($sub_category) {
+                    //whereHasメソッドは関連するモデルに基づいてフィルタリングに便利（※親モデルが子モデルとの関係を持っているレコードのみを取得する場合）
+                    //⇒postモデル(親)とsubcategory(子)の関連に何か条件を適用して、親モデルのレコードを取得するために使う
+                    //useで使いたいキーワード($sub_category)をクロージャ内にインポート
+                    //⇒これでクロージャの中で外部の変数にアクセスできる
+
+                    $q->where('sub_categories.sub_category', $sub_category);
+                    //第一引数は操作しているモデル
+                    //第二引数はクロージャ関数
+                    //⇒$qはクエリビルダーのインスタンス（$sub_category変数と一致する条件をフィルタリング）
+                })
+                ->get();
         }
         return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
     }
@@ -50,17 +67,22 @@ class PostsController extends Controller
     public function postInput()
     {
         $main_categories = MainCategory::get();
-        return view('authenticated.bulletinboard.post_create', compact('main_categories'));
+        //サブカテゴリーも追加
+        $sub_categories = SubCategory::get();
+        return view('authenticated.bulletinboard.post_create', compact('main_categories', 'sub_categories'));
     }
 
     //新規作成
     public function postCreate(PostFormRequest $request)
     {
+        // dd($request->all());
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+        $post->subCategories()->attach($request->sub_category_id);
+        // dd($request->all());
         return redirect()->route('post.show');
     }
 

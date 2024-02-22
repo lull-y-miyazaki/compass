@@ -23,6 +23,6 @@ class SubCategory extends Model
     {
         // リレーションの定義
         //多対多
-        return $this->belongsToMany('App\Models\Categories\SubCategory', 'post_sub_categories', 'sub_category_id', 'post_id');
+        return $this->belongsToMany('App\Models\Posts\Post', 'post_sub_categories', 'sub_category_id', 'post_id');
     }
 }
