@@ -2,6 +2,8 @@
 
 namespace App\Calendars\Admin;
 
+//このCarbonは、nesbot/carbon パッケージの src/Carbon ディレクトリ内にある Carbon.phpに
+//Carbonライブラリの主要な機能を含み、日付と時刻に関する操作を行うためのメソッドが定義されている
 use Carbon\Carbon;
 use App\Models\Users\User;
 
@@ -52,8 +54,11 @@ class CalendarView
                 } else {
                     $html[] = '<td class="border ' . $day->getClassName() . '">';
                 }
-                $html[] = $day->render();
+                //スクール予約確認のカレンダー部分
+                $html[] = $day->render(); //日付
                 $html[] = $day->dayPartCounts($day->everyDay());
+                //(部数)Admin/CalendarWeekdayにあるメソッド
+
                 $html[] = '</td>';
             }
             $html[] = '</tr>';

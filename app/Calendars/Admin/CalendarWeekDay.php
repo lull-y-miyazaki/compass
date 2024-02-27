@@ -29,7 +29,8 @@ class CalendarWeekDay
         return $this->carbon->format("Y-m-d");
     }
 
-    //予約確認ページ
+    //予約確認ページの部数の表示
+    //Admin/CalendarViewで使用
     function dayPartCounts($ymd)
     {
         // dd($ymd);
@@ -38,29 +39,31 @@ class CalendarWeekDay
         $one_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();
         $two_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
         $three_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
-
         //generalの見て
         $html[] = '<div class="text-left">';
         if ($one_part) {
+            // dd($one_part);
             // $html[] = '<p class="day_part m-0 pt-1">1部</p>';
+            ///ルーティングがcalendar/{date}/{part}なので、
             $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => '1']) . '" class="day_part">1部: </a>';
             $html[] = '<a class="day_part m-0 pt-1">' . $one_part->users->count() . '人</a><br>';
         } else {
-            $html[] = '<a class="day_part m-0 pt-1">1部: 0</a><br>';
+            $html[] = '<a class="day_part m-0 pt-1">1部: 0人</a><br>';
         }
         if ($two_part) {
+            // dd($two_part);
             // $html[] = '<p class="day_part m-0 pt-1">2部</p>';
             $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => '2']) . '" class="day_part">2部: </a>';
             $html[] = '<span class="day_part m-0 pt-1">' . $two_part->users->count() . '人</span><br>';
         } else {
-            $html[] = '<span class="day_part m-0 pt-1">2部: 0</span><br>';
+            $html[] = '<span class="day_part m-0 pt-1">2部: 0人</span><br>';
         }
         if ($three_part) {
             // $html[] = '<p class="day_part m-0 pt-1">3部</p>';
             $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => '3']) . '" class="day_part">3部: </a>';
             $html[] = '<span class="day_part m-0 pt-1">' . $three_part->users->count() . '人</span><br>';
         } else {
-            $html[] = '<span class="day_part m-0 pt-1">3部: 0</span><br>';
+            $html[] = '<span class="day_part m-0 pt-1">3部: 0人</span><br>';
         }
         $html[] = '</div>';
 

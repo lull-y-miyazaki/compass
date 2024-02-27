@@ -19,13 +19,14 @@ class CalendarsController extends Controller
         return view('authenticated.calendar.general.calendar', compact('calendar'));
     }
 
+    //予約機能
     public function reserve(Request $request)
     {
         DB::beginTransaction();
         try {
             $getPart = $request->getPart;
             $getDate = $request->getData;
-            // dd($getPart, $getDate);
+            // dd(count($getDate), count($getPart));
             $reserveDays = array_filter(array_combine($getDate, $getPart));
             foreach ($reserveDays as $key => $value) {
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
@@ -37,5 +38,42 @@ class CalendarsController extends Controller
             DB::rollback();
         }
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
+    }
+
+    //キャンセル機能
+    public function delete(Request $request)
+    {
+        // $request->all();
+
+        //受け取ったデータを変数に代入
+        $setting_reserve = $request->input('reserve_date');
+        $setting_part = $request->input('reserve_part');
+        // dd($setting_reserve);
+        // dd($setting_part);
+
+        $setting_reserve = ReserveSettings::where('setting_reserve', $setting_reserve)->where('setting_part', $setting_part)->first();
+        //ReserveSettingsモデルを使用して、データベース内の値に一致するレコードを検索
+        //setting_reserveカラムが$setting_reserve変数の値
+        //setting_partカラムが$setting_part変数の値
+
+        $setting_reserve->increment('limit_users');
+        //検索で見つかったレコードのlimit_usersフィールドの値を1増やす
+
+        $setting_reserve->users()->detach(Auth::id());
+        //$setting_reserveモデルに紐付けられているusersリレーションからログインユーザーを取得
+        return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
+
+        // $request->all();
+        // $reserveSetting_date = $request->input('reserve_date');
+        // $reserveSetting_part = $request->input('reserve_part');
+        // // dd($reserveSetting_date);
+        // // dd($reserveSetting_part);
+
+        // $reserveSetting = ReserveSettings::where('setting_reserve', $reserveSetting_date)->where('setting_part', $reserveSetting_part)->first();
+
+        // if ($reserveSetting) {
+        //     $reserveSetting->increment('limit_users');
+        //     $reserveSetting->users()->detach(Auth::id());
+        // }
     }
 }

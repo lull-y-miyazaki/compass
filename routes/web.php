@@ -15,7 +15,8 @@ Route::group(['middleware' => ['guest']], function () {
     Route::namespace('Auth')->group(function () {
         Route::get('/register', 'RegisterController@registerView')->name('registerView');
         Route::post('/register/post', 'RegisterController@registerPost')->name('registerPost');
-        Route::get('/login', 'LoginController@loginView')->name('loginView'); //"/login"ではダメだった
+        Route::get('/login', 'LoginController@loginView')->name('loginView');
+        //名前が"loginView"なので"/login"ではダメだった
         Route::post('/login/post', 'LoginController@loginPost')->name('loginPost');
     });
 });
@@ -31,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('/calendar/{user_id}', 'CalendarsController@show')->name('calendar.general.show');
                 Route::post('/reserve/calendar', 'CalendarsController@reserve')->name('reserveParts');
                 Route::post('/delete/calendar', 'CalendarsController@delete')->name('deleteParts');
+                //キャンセル機能
             });
             Route::namespace('Admin')->group(function () {
                 Route::get('/calendar/{user_id}/admin', 'CalendarsController@show')->name('calendar.admin.show');

@@ -22,8 +22,13 @@ class CalendarsController extends Controller
 
     public function reserveDetail($date, $part)
     {
+        //予約したユーザー情報
         $reservePersons = ReserveSettings::with('users')->where('setting_reserve', $date)->where('setting_part', $part)->get();
+        //ReserveSettings モデルと関連する users モデルの情報を取得します。where 句を使って、setting_reserve カラムが $date と一致し、setting_part カラムが $part と一致するレコードをデータベースから取得
         return view('authenticated.calendar.admin.reserve_detail', compact('reservePersons', 'date', 'part'));
+        //view関数はビューファイルをレンダリングしてレスポンスとして返すために使用されるヘルパー関数
+        //第一引数はビューファイルへのパス(/⇒.)
+        //第二引数は、ビューに渡すデータの配列
     }
 
     public function reserveSettings()
