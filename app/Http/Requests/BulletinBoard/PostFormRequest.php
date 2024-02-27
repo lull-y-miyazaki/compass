@@ -25,7 +25,7 @@ class PostFormRequest extends FormRequest
     {
         return [
             'post_title' => 'min:4|max:50',
-            'post_body' => 'min:10|max:500',
+            'post' => 'min:10|max:500',
             'sub_category_id' => 'required|exists:sub_categories,id',
             //指定されたテーブルの指定された列に存在する値であることを検証
         ];
