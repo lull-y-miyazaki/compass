@@ -12,7 +12,7 @@
                 <select class="w-100" form="postCreate" name="sub_category_id">
                     <option value=""></option>
                     @foreach ($main_categories as $main_category)
-                        <option value="{{ $main_category->id }}" style="background-color:#f0f0f0; color:#979797;">
+                        <option value="{{ $main_category->id }}" style="background-color:#f0f0f0; color:#979797;" disabled>
                             {{ $main_category->main_category }}</option>
                         <!-- サブカテゴリー表示 -->
                         @foreach ($main_category->subCategories as $sub_category)

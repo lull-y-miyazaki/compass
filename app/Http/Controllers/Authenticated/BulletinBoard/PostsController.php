@@ -94,7 +94,7 @@ class PostsController extends Controller
         //postバリデーション
         $request->validate([
             'post_title' => 'required|string|max:100',
-            'post_body' => 'required|string|max:5000',
+            'post' => 'required|string|max:5000',
         ]);
 
         Post::where('id', $request->post_id)->update([

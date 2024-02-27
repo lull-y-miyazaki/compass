@@ -24,8 +24,8 @@ class PostFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'post_title' => 'min:4|max:50',
-            'post' => 'min:10|max:500',
+            'post_title' => 'string|min:4|max:50',
+            'post_body' => 'string|min:10|max:5000',
             'sub_category_id' => 'required|exists:sub_categories,id',
             //指定されたテーブルの指定された列に存在する値であることを検証
         ];
@@ -37,7 +37,7 @@ class PostFormRequest extends FormRequest
             'post_title.min' => 'タイトルは4文字以上入力してください。',
             'post_title.max' => 'タイトルは50文字以内で入力してください。',
             'post_body.min' => '内容は10文字以上入力してください。',
-            'post_body.max' => '最大文字数は500文字です。',
+            'post_body.max' => '最大文字数は5000文字です。',
             'sub_category_id.required' => 'サブカテゴリーを選択してください。',
         ];
     }
