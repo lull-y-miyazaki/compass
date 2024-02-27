@@ -12,6 +12,8 @@ use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
 use Auth;
+//バリデーション用に追加
+use Illuminate\Validation\Rule;
 
 class PostsController extends Controller
 {
@@ -112,16 +114,37 @@ class PostsController extends Controller
     //メインカテゴリーの作成
     public function mainCategoryCreate(Request $request)
     {
-        MainCategory::create(['main_category' => $request->main_category_name]);
+        $validated = $request->validate([
+            'main_category_name' => 'required|string|max:100|unique:main_categories,main_category',
+        ]);
+
+        // MainCategory::create(['main_category' => $request->main_category_name]);
+        MainCategory::create(['main_category' => $validated['main_category_name']]);
         return redirect()->route('post.input');
     }
 
     //サブカテゴリーの作成
     public function subCategoryCreate(Request $request)
     {
+        $validated = $request->validate([
+            'main_category_id' => 'required|exists:main_categories,id',
+            'sub_category_name' => [
+                'required',
+                'string',
+                'max:100',
+                Rule::unique('sub_categories', 'sub_category')->where(function ($query) use ($request) {
+                    return $query->where('main_category_id', $request->main_category_id);
+                }),
+            ],
+        ]);
+
+        // SubCategory::create([
+        //     'main_category_id' => $request->main_category_id,
+        //     'sub_category' => $request->sub_category_name
+        // ]);
         SubCategory::create([
-            'main_category_id' => $request->main_category_id,
-            'sub_category' => $request->sub_category_name
+            'main_category_id' => $validated['main_category_id'],
+            'sub_category' => $validated['sub_category_name']
         ]);
         return redirect()->route('post.input');
     }
@@ -129,10 +152,15 @@ class PostsController extends Controller
     //コメント
     public function commentCreate(Request $request)
     {
+        $validated = $request->validate([
+            'post_id' => 'required',
+            'comment' => 'required|string|max:2500',
+        ]);
+
         PostComment::create([
-            'post_id' => $request->post_id,
+            'post_id' => $validated['post_id'],
             'user_id' => Auth::id(),
-            'comment' => $request->comment
+            'comment' => $validated['comment'],
         ]);
         return redirect()->route('post.detail', ['id' => $request->post_id]);
     }
