@@ -6,6 +6,10 @@
                 <div class="p-3">
                     <div class="detail_inner_head">
                         <div>
+                            {{-- サブカテゴリー表示 --}}
+                            @foreach ($post->subCategories as $subCategory)
+                                <span class="btn-primary">{{ $subCategory->sub_category }}</span>
+                            @endforeach
                         </div>
 
                         {{-- 作成ユーザーのみ表示 --}}
