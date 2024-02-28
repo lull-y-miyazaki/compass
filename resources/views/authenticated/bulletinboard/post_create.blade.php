@@ -4,6 +4,7 @@
     <div class="post_create_container d-flex">
         <div class="post_create_area border w-50 m-5 p-5">
 
+
             <div class="">
                 @if ($errors->first('sub_category_id'))
                     <span class="error_message">{{ $errors->first('sub_category_id') }}</span>
@@ -48,6 +49,9 @@
                 <div class="category_area mt-5 p-5">
                     <div class="">
                         <p class="m-0">メインカテゴリー</p>
+                        @if ($errors->has('main_category_name'))
+                            <span class="error_message">{{ $errors->first('main_category_name') }}</span>
+                        @endif
                         <input type="text" class="w-100" name="main_category_name" form="mainCategoryRequest">
                         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
                     </div>
@@ -57,6 +61,9 @@
                     <!-- サブカテゴリーエリア -->
                     <div class="">
                         <p class="m-0">サブカテゴリー</p>
+                        @if ($errors->has('main_category_id'))
+                            <span class="error_message">{{ $errors->first('main_category_id') }}</span>
+                        @endif
                         {{-- メインカテゴリー表示 --}}
                         <select class="w-100" name="main_category_id" form="subCategoryRequest">
                             <option value=""></option>

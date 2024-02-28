@@ -30,7 +30,7 @@ class CalendarsController extends Controller
             $reserveDays = array_filter(array_combine($getDate, $getPart));
             foreach ($reserveDays as $key => $value) {
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
-                $reserve_settings->decrement('limit_users');
+                $reserve_settings->decrement('limit_users'); //-1
                 $reserve_settings->users()->attach(Auth::id());
             }
             DB::commit();
@@ -43,11 +43,13 @@ class CalendarsController extends Controller
     //キャンセル機能
     public function delete(Request $request)
     {
-        // $request->all();
+        dd($request);
 
         //受け取ったデータを変数に代入
         $setting_reserve = $request->input('reserve_date');
+        // dd($setting_reserve);
         $setting_part = $request->input('reserve_part');
+        // dd($setting_part);
         // dd($setting_reserve);
         // dd($setting_part);
 
@@ -60,7 +62,8 @@ class CalendarsController extends Controller
         //検索で見つかったレコードのlimit_usersフィールドの値を1増やす
 
         $setting_reserve->users()->detach(Auth::id());
-        //$setting_reserveモデルに紐付けられているusersリレーションからログインユーザーを取得
+        //$setting_reserve オブジェクトに紐づいている users リレーションから、現在認証されているユーザー（Auth::id() で取得）を削除。detach メソッドは、多対多リレーションで関連付けられているレコードを解除
+
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
 
         // $request->all();

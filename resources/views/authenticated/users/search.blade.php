@@ -3,9 +3,10 @@
 @section('content')
     <p>ユーザー検索</p>
     <div class="search_content w-100 border d-flex">
-        <div class="reserve_users_area">
+        <div class="search_users_area">
             @foreach ($users as $user)
-                <div class="border one_person">
+                <div class="border one_person"
+                    style=" box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); border-radius: 15px; padding: 20px;">
                     <div>
                         <span>ID : </span><span>{{ $user->id }}</span>
                     </div>
@@ -55,9 +56,11 @@
                 </div>
             @endforeach
         </div>
+
         <div class="search_area w-25 border">
             <div class="">
                 <div>
+                    <h4>検索</h4>
                     <input type="text" class="free_word" name="keyword" placeholder="キーワードを検索" form="userSearchRequest">
                 </div>
                 <div>
@@ -98,7 +101,8 @@
                             {{-- 選択科目の表示&検索を追加 --}}
                             @foreach ($subjects as $subject)
                                 <option>{{ $subject->subject }}</option>
-                                <input type="radio" name="subject" value="{{ $subject->id }}" form="userSearchRequest">
+                                {{-- radioだと複数選択できないのでcheckboxに変更 --}}
+                                <input type="checkbox" name="subject" value="{{ $subject->id }}" form="userSearchRequest">
                             @endforeach
                         </div>
                     </div>

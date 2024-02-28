@@ -6,18 +6,29 @@
                 <div class="p-3">
                     <div class="detail_inner_head">
                         <div>
+                            @if ($errors->has('post_title'))
+                                <div class="alert alert-danger">
+                                    {{ $errors->first('post_title') }}
+                                </div>
+                            @endif
+                            @if ($errors->has('post'))
+                                <div class="alert alert-danger">
+                                    {{ $errors->first('post') }}
+                                </div>
+                            @endif
+
                             {{-- サブカテゴリー表示 --}}
                             @foreach ($post->subCategories as $subCategory)
-                                <span class="btn-primary">{{ $subCategory->sub_category }}</span>
+                                <span class="category_btn">{{ $subCategory->sub_category }}</span>
                             @endforeach
                         </div>
 
                         {{-- 作成ユーザーのみ表示 --}}
                         @if (auth()->user()->id == $post->user_id)
                             <div>
-                                <span class="edit-modal-open" post_title="{{ $post->post_title }}"
+                                <span class="edit-modal-open btn btn-primary" post_title="{{ $post->post_title }}"
                                     post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-                                <a href="{{ route('post.delete', ['id' => $post->id]) }}"
+                                <a class="btn btn-danger" href="{{ route('post.delete', ['id' => $post->id]) }}"
                                     onclick="return confirm('削除してよろしいですか？')">削除</a>
                                 {{-- モーダル表示 --}}
                             </div>
@@ -27,13 +38,14 @@
 
                     <div class="contributor d-flex">
                         <p>
-                            <span>{{ $post->user->over_name }}</span>
-                            <span>{{ $post->user->under_name }}</span>
+                            <span style="font-weight: bold; font-size:16px">{{ $post->user->over_name }}</span>
+                            <span style="font-weight: bold; font-size:16px">{{ $post->user->under_name }}</span>
                             さん
                         </p>
                         <span class="ml-5">{{ $post->created_at }}</span>
                     </div>
-                    <div class="detsail_post_title">{{ $post->post_title }}</div>
+                    <div class="detsail_post_title" style="font-weight: bold;  font-size:16px">{{ $post->post_title }}
+                    </div>
                     <div class="mt-3 detsail_post">{{ $post->post }}</div>
                 </div>
                 <div class="p-3">
@@ -56,6 +68,11 @@
             <div class="comment_container border m-5">
                 <div class="comment_area p-3">
                     <p class="m-0">コメントする</p>
+                    @if ($errors->has('comment'))
+                        <div class="alert alert-danger">
+                            {{ $errors->first('comment') }}
+                        </div>
+                    @endif
                     <textarea class="w-100" name="comment" form="commentRequest"></textarea>
                     <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
                     <input type="submit" class="btn btn-primary" form="commentRequest" value="投稿">
