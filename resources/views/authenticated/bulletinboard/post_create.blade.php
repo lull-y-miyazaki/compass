@@ -72,6 +72,9 @@
                             @endforeach
                         </select>
                         <!-- サブカテゴリー追加 -->
+                        @if ($errors->has('sub_category_name'))
+                            <span class="error_message">{{ $errors->first('sub_category_name') }}</span>
+                        @endif
                         <input type="text" class="w-100" name="sub_category_name" form="subCategoryRequest">
                         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryRequest">
                     </div>

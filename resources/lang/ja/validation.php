@@ -145,10 +145,17 @@ return [
     |
     */
 
-    'attributes' => [],
-    'address1' => '市区町村',
-    'address2' => '町名・番地',
-    'address3' => 'ビル・マンション名',
-    'password' => 'パスワード',
-
+    'attributes' => [
+        'post' => '投稿',
+        'comment' => 'コメント',
+        'address1' => '市区町村',
+        'address2' => '町名・番地',
+        'address3' => 'ビル・マンション名',
+        'password' => 'パスワード',
+        'post_title' => 'タイトル',
+        'post_body' => '本文',
+        'main_category_name' => 'メインカテゴリー',
+        'main_category_id' => 'メインカテゴリー',
+        'sub_category_name' => 'サブカテゴリー',
+    ],
 ];

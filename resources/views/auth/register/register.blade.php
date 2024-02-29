@@ -17,17 +17,6 @@
 </head>
 
 <body>
-    {{-- @if ($errors->any())
-        <!-- $errors変数 バリデーションエラーがあるかのチェック -->
-        <div class="alert alert-danger">
-            <!-- もしエラーがある場合、alertとalert-dangerというクラスを持つHTMLのdiv要素が作成(Bootstrapのクラス？) -->
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif --}}
 
     <form action="{{ route('registerPost') }}" method="POST">
         <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
@@ -99,6 +88,9 @@
                     @endif
                 </div>
                 <div class="mt-3">
+                    @if ($errors->has('birth_day'))
+                        <span class="text-danger">{{ $errors->first('birth_day') }}</span>
+                    @endif
                     <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
                     <select class="old_year" name="old_year">
                         <option value="none">-----</option>
@@ -180,15 +172,6 @@
                         <option value="30">30</option>
                         <option value="31">31</option>
                     </select>
-                    @if ($errors->has('old_year'))
-                        <span class="text-danger">{{ $errors->first('old_year') }}</span>
-                    @endif
-                    @if ($errors->has('old_month'))
-                        <span class="text-danger">{{ $errors->first('old_month') }}</span>
-                    @endif
-                    @if ($errors->has('old_day'))
-                        <span class="text-danger">{{ $errors->first('old_day') }}</span>
-                    @endif
                     <label style="font-size:13px">月</label>
                 </div>
                 <div class="mt-3">

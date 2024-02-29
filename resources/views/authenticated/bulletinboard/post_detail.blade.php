@@ -6,7 +6,7 @@
                 <div class="p-3">
                     <div class="detail_inner_head">
                         <div>
-                            @if ($errors->has('post_title'))
+                            {{-- @if ($errors->has('post_title'))
                                 <div class="alert alert-danger">
                                     {{ $errors->first('post_title') }}
                                 </div>
@@ -15,6 +15,12 @@
                                 <div class="alert alert-danger">
                                     {{ $errors->first('post') }}
                                 </div>
+                            @endif --}}
+                            @if ($errors->first('post_title'))
+                                <span class="error_message">{{ $errors->first('post_title') }}</span></br>
+                            @endif
+                            @if ($errors->first('post'))
+                                <span class="error_message">{{ $errors->first('post') }}</span></br>
                             @endif
 
                             {{-- サブカテゴリー表示 --}}
@@ -68,10 +74,13 @@
             <div class="comment_container border m-5">
                 <div class="comment_area p-3">
                     <p class="m-0">コメントする</p>
-                    @if ($errors->has('comment'))
+                    {{-- @if ($errors->has('comment'))
                         <div class="alert alert-danger">
                             {{ $errors->first('comment') }}
                         </div>
+                    @endif --}}
+                    @if ($errors->first('comment'))
+                        <span class="error_message">{{ $errors->first('comment') }}</span></br>
                     @endif
                     <textarea class="w-100" name="comment" form="commentRequest"></textarea>
                     <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
