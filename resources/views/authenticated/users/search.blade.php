@@ -61,34 +61,42 @@
             <div class="">
                 <div>
                     <h4>検索</h4>
-                    <input type="text" class="free_word" name="keyword" placeholder="キーワードを検索" form="userSearchRequest">
+                    <input type="text" class="free_word" name="keyword" placeholder="キーワードを検索" form="userSearchRequest"
+                        style="border-radius: 5px; background-color: #E0E5E9; margin: 10px 0 10px 0; height: 45px; ">
                 </div>
                 <div>
-                    <lavel>カテゴリ</lavel>
-                    <select form="userSearchRequest" name="category">
+                    <lavel style="display: flex; margin-bottom: 10px;">カテゴリ</lavel>
+                    <select form="userSearchRequest" name="category"
+                        style="margin-bottom: 10px; border-radius: 5px; background-color: #E0E5E9; margin: 10px 0 10px 0; height: 35px;">
                         <option value="name">名前</option>
                         <option value="id">社員ID</option>
                     </select>
                 </div>
                 <div>
-                    <label>並び替え</label>
-                    <select name="updown" form="userSearchRequest">
+                    <label style="display: flex; margin-bottom: 10px;">並び替え</label>
+                    <select name="updown" form="userSearchRequest"
+                        style="margin-bottom: 10px; border-radius: 5px; background-color: #E0E5E9; margin: 10px 0 10px 0; height: 35px;">
                         <option value="ASC">昇順</option>
                         <option value="DESC">降順</option>
                     </select>
                 </div>
                 <div class="">
-                    <p class="m-0 search_conditions"><span>検索条件の追加</span></p>
-                    <div class="search_conditions_inner">
+                    <p class="m-0 search_conditions"
+                        style="border-bottom: solid 1px #000; display: flex; justify-content: space-between">
+                        <span>検索条件の追加</span>
+                        <span class="toggle-subcategories toggle-icon" style="cursor:pointer;">V</span>
+                    </p>
+                    <div class="search_conditions_inner" style="background-color: #ECF1F6;">
                         <div>
-                            <label>性別</label>
+                            <label style="display: flex; margin-top: 10px;">性別</label>
                             <span>男</span><input type="radio" name="sex" value="1" form="userSearchRequest">
                             <span>女</span><input type="radio" name="sex" value="2" form="userSearchRequest">
                             <span>その他</span><input type="radio" name="sex" value="3" form="userSearchRequest">
                         </div>
                         <div>
-                            <label>権限</label>
-                            <select name="role" form="userSearchRequest" class="engineer">
+                            <label style="display: flex; margin-top: 10px">権限</label>
+                            <select name="role" form="userSearchRequest" class="engineer"
+                                style="border-radius: 5px; background-color: #E0E5E9; height: 35px; ">
                                 <option selected disabled>----</option>
                                 <option value="1">教師(国語)</option>
                                 <option value="2">教師(数学)</option>
@@ -96,22 +104,27 @@
                                 <option value="4" class="">生徒</option>
                             </select>
                         </div>
-                        <div class="selected_engineer">
-                            <label>選択科目</label>
+
+                        <label style="margin-top: 10px">選択科目</label>
+                        <div class="selected_engineer" style="display: flex;">
+
                             {{-- 選択科目の表示&検索を追加 --}}
                             @foreach ($subjects as $subject)
                                 <option>{{ $subject->subject }}</option>
                                 {{-- radioだと複数選択できないのでcheckboxに変更 --}}
-                                <input type="checkbox" name="subject" value="{{ $subject->id }}" form="userSearchRequest">
+                                <input type="checkbox" name="subject" value="{{ $subject->id }}" form="userSearchRequest"
+                                    style="margin-right: 10px;">
                             @endforeach
                         </div>
                     </div>
                 </div>
                 <div>
-                    <input type="reset" value="リセット" form="userSearchRequest">
+                    <input type="submit" name="search_btn" value="検索" form="userSearchRequest"
+                        style="margin-top: 30px; border-radius: 5px; width: 100%; height: 45px; ">
                 </div>
                 <div>
-                    <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
+                    <input type="reset" value="リセット" form="userSearchRequest"
+                        style="border: none; margin-top: 30px; border-radius: 5px; width: 100%; height: 45px; color: #03AAD2;">
                 </div>
             </div>
             <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>

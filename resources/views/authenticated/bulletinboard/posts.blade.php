@@ -47,26 +47,36 @@
                     <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
                     <input type="submit" value="検索" form="postSearchRequest">
                 </div>
-                <input type="submit" name="like_posts" class="category_btn_like" value="いいねした投稿" form="postSearchRequest">
-                <input type="submit" name="my_posts" class="category_btn_my" value="自分の投稿" form="postSearchRequest">
+                <input type="submit" name="like_posts" class="category_btn_like" value="いいねした投稿" form="postSearchRequest;"
+                    style="cursor:pointer;">
+                <input type="submit" name="my_posts" class="category_btn_my" value="自分の投稿" form="postSearchRequest"
+                    style="cursor:pointer;">
 
                 {{-- サブカテゴリーでの検索 --}}
                 <div class="category_search">
                     <p style="margin-top:30px;">カテゴリー検索</p>
-                    <ul>
+                    <ul class="main_categories search_conditions">
                         @foreach ($categories as $category)
-                            <li class="main_categories" category_id="{{ $category->id }}">
+                            <li category_id="{{ $category->id }}"
+                                style="border-bottom: solid 1px #000; width: 80%; margin-bottom: 10px; justify-content: space-between; display:flex;">
                                 <span>{{ $category->main_category }}</span>
-                                <ul>
+                                <span class="toggle-subcategories toggle-icon" style="cursor:pointer;">V</span>
+                            </li>
+                            <div class="search_post_inner" style="display:none; background-color: #ECF1F6;">
+                                <ul style="width: 80%; margin-bottom: 10px;">
                                     @foreach ($category->subCategories as $subCategory)
-                                        <input type="submit" name="categories_posts"
-                                            value="{{ $subCategory->sub_category }}" form="postSearchRequest">
+                                        <li style="border-bottom: solid 1px #000; width: 80%; margin-bottom: 10px;">
+                                            <input type="submit" name="categories_posts"
+                                                value="{{ $subCategory->sub_category }}" form="postSearchRequest"
+                                                style="background: initial; border: initial; padding: 0 0 0 10px;">
+                                        </li>
                                     @endforeach
                                 </ul>
-                            </li>
+                            </div>
                         @endforeach
                     </ul>
                 </div>
+
 
             </div>
         </div>

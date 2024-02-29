@@ -4,7 +4,8 @@
 @section('content')
     <div class="vh-100 d-flex" style="align-items:center; justify-content:center;">
         <div class="w-50 m-auto" style="height: 45%">
-            <p><span>{{ $date }}</span><span class="ml-3">{{ $part }}部</span></p>
+            <p><span style="font-size:18px; font-weight: bold;">{{ $date }}</span><span class="ml-3"
+                    style="font-size:18px; font-weight: bold;">{{ $part }}部</span></p>
             <div class="reserve_users_container">
                 <table class="reserve_users"
                     style=" box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); border-radius: 15px; padding: 20px;">

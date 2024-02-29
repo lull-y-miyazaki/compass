@@ -7,7 +7,7 @@
             style=" box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); border-radius: 15px; padding: 20px; background:#FFF;">
             <div class="w-60 m-auto border" style="border-radius:5px;">
 
-                <p class="text-center">{{ $calendar->getTitle() }}</p>
+                <p class="text-center" style="font-size: 18px; font-weight: bold;">{{ $calendar->getTitle() }}</p>
                 <div class="">
                     {!! $calendar->render() !!}
                 </div>

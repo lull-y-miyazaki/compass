@@ -16,12 +16,12 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="background: #ECF1F6;">
     <form action="{{ route('loginPost') }}" method="POST">
         <div class="w-100 vh-100 d-flex logo_image" style="align-items:center; justify-content:center;">
             <img src="{{ asset('image/atlas-black.png') }}" width="150px" style="margin:0 0 50px 0;">
             <div class="border vh-50 w-25"
-                style=" box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); border-radius: 15px; padding: 20px;">
+                style=" box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); border-radius: 15px; padding: 20px;  background-color: #fefefe">
                 <div class="w-75 m-auto pt-5">
                     <label class="d-block m-0" style="font-size:13px; font-weight:bold;">メールアドレス</label>
                     <div class="border-bottom border-primary w-100">

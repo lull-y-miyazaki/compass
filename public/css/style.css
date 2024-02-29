@@ -25,10 +25,12 @@ li {
 
 /* サイドバー */
 .sidebar {
-    width: 150px;
+    width: 190px;
     height: 100vh;
     background-color: #03AAD2;
     font-weight: bold;
+    position: fixed;
+    padding: 15px;
 }
 
 .main-container {
@@ -37,6 +39,10 @@ li {
 
 .sidebar p a {
     color: #FFF;
+}
+
+.side_icon {
+    width: 30px;
 }
 
 /* トップページ */
@@ -334,7 +340,7 @@ li {
     overflow: scroll;
     padding: 10px;
     border-radius: 5px;
-    margin: 0 5%;
+    margin: 0 5% 0 15%;
 }
 
 
@@ -354,6 +360,11 @@ li {
 }
 
 .search_conditions_inner {
+    display: none;
+    background: #FFF;
+}
+
+.search_post_inner {
     display: none;
     background: #FFF;
 }
