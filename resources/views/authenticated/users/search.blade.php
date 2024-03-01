@@ -123,8 +123,8 @@
                         style="margin-top: 30px; border-radius: 5px; width: 100%; height: 45px; ">
                 </div>
                 <div>
-                    <input type="reset" value="リセット" form="userSearchRequest"
-                        style="border: none; margin-top: 30px; border-radius: 5px; width: 100%; height: 45px; color: #03AAD2;">
+                    <input type="submit" value="リセット" form="userSearchRequest"
+                        style="border: none; margin-top: 30px; border-radius: 5px; width: 100%; height: 45px; color: #03AAD2; cursor:pointer; background-color: #ECF1F6;">
                 </div>
             </div>
             <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>
