@@ -65,10 +65,11 @@
                             <div class="search_post_inner" style="display:none; background-color: #ECF1F6;">
                                 <ul style="width: 80%; margin-bottom: 10px;">
                                     @foreach ($category->subCategories as $subCategory)
-                                        <li style="border-bottom: solid 1px #000; width: 80%; margin-bottom: 10px;">
+                                        <li
+                                            style="border-bottom: solid 1px #000; width: 80%; margin-bottom: 10px; cursor: pointer;">
                                             <input type="submit" name="categories_posts"
                                                 value="{{ $subCategory->sub_category }}" form="postSearchRequest"
-                                                style="background: initial; border: initial; padding: 0 0 0 10px;">
+                                                style="background: initial; border: initial; padding: 0 0 0 10px;cursor: pointer;">
                                         </li>
                                     @endforeach
                                 </ul>
