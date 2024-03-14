@@ -45,25 +45,30 @@ class CalendarWeekDay
             // dd($one_part);
             // $html[] = '<p class="day_part m-0 pt-1">1部</p>';
             ///ルーティングがcalendar/{date}/{part}なので、
-            $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => '1']) . '" class="day_part">1部: </a>';
-            $html[] = '<a class="day_part m-0 pt-1">' . $one_part->users->count() . '人</a><br>';
+            $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => '1']) . '" class="sett_a">1部 </a>';
+            $html[] = '<a class="m-0 pt-1 sett_text">' . $one_part->users->count() . '人</a><br>';
         } else {
-            $html[] = '<a class="day_part m-0 pt-1">1部: 0人</a><br>';
+            // $html[] = '<a class="m-0 pt-1">1部: 0人</a><br>';
+            // $html[] = '<span class="m-0 pt-1 sett_a">1部： </span>' . '<span class="sett_text">0人</span><br>';
+            $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => '1']) . '" class="sett_a">1部 </a>';
+            $html[] = '<a class="m-0 pt-1">' . '<span class="sett_text">0人</span><br>';
         }
         if ($two_part) {
             // dd($two_part);
             // $html[] = '<p class="day_part m-0 pt-1">2部</p>';
-            $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => '2']) . '" class="day_part">2部: </a>';
-            $html[] = '<span class="day_part m-0 pt-1">' . $two_part->users->count() . '人</span><br>';
+            $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => '2']) . '" class="sett_a">2部 </a>';
+            $html[] = '<span class="m-0 pt-1 sett_text">' . $two_part->users->count() . '人</span><br>';
         } else {
-            $html[] = '<span class="day_part m-0 pt-1">2部: 0人</span><br>';
+            $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => '2']) . '" class="sett_a">2部 </a>';
+            $html[] = '<a class="m-0 pt-1">' . '<span class="sett_text">0人</span><br>';
         }
         if ($three_part) {
             // $html[] = '<p class="day_part m-0 pt-1">3部</p>';
-            $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => '3']) . '" class="day_part">3部: </a>';
-            $html[] = '<span class="day_part m-0 pt-1">' . $three_part->users->count() . '人</span><br>';
+            $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => '3']) . '" class="sett_a">3部 </a>';
+            $html[] = '<span class="m-0 pt-1 sett_text">' . $three_part->users->count() . '人</span><br>';
         } else {
-            $html[] = '<span class="day_part m-0 pt-1">3部: 0人</span><br>';
+            $html[] = '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => '3']) . '" class="sett_a">3部 </a>';
+            $html[] = '<a class="m-0 pt-1">' . '<span class="sett_text">0人</span><br>';
         }
         $html[] = '</div>';
 

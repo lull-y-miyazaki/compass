@@ -41,7 +41,7 @@
                     </p>
                     <p>
                         <a href="{{ route('calendar.admin.setting', ['user_id' => Auth::id()]) }}">
-                            <img src="{{ asset('image/ic007.png') }}" class="side_icon">スクール枠登録</a>
+                            <img src="{{ asset('image/ic008.png') }}" class="side_icon">スクール枠登録</a>
                     </p>
                 @endif
 

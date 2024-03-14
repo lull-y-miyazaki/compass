@@ -2,10 +2,10 @@
 {{-- スクール予約 --}}
 
 @section('content')
-    <div class="vh-100 pt-5" style="background:#ECF1F6;">
-        <div class="border w-75 m-auto pt-5 pb-5"
+    <div class="vh-100 pt-5 bottom_5" style="background:#ECF1F6;">
+        <div class="border w-75 m-auto pb-5"
             style=" box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); border-radius: 15px; padding: 20px; background:#FFF;">
-            <div class="w-60 m-auto border" style="border-radius:5px;">
+            <div class="w-60 m-auto" style="border-radius:5px;">
 
                 <p class="text-center" style="font-size: 18px; font-weight: bold;">{{ $calendar->getTitle() }}</p>
                 <div class="">
@@ -26,11 +26,15 @@
             <form action="{{ route('deleteParts') }}" method="post">
                 @csrf
                 {{-- 表示用 --}}
-                <div class="reserve_date"></div>
-                <div class="reserve_part"></div>
-                <p>こちらの予約をキャンセルしますか？</p>
-                <a class="modal_close btn btn-primary" href="">戻る</a>
-                <input type="submit" class="m-auto btn btn-danger" href="/delete/calendar" value="キャンセル">
+                <div class="btn_modal">
+                    <div class="reserve_date"></div>
+                    <div class="reserve_part"></div>
+                    <p>こちらの予約をキャンセルしますか？</p>
+                    <div class="btn_area">
+                        <a class="modal_close btn btn-primary" href="">戻る</a>
+                        <input type="submit" class="m-auto btn btn-danger" href="/delete/calendar" value="キャンセル">
+                    </div>
+                </div>
                 {{-- 送信用 --}}
                 <input type="hidden" name="reserve_date" class="reserve_date" value="">
                 <input type="hidden" name="reserve_part" class="reserve_part" value="">

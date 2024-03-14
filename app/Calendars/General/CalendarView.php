@@ -26,16 +26,16 @@ class CalendarView
     {
         $html = [];
         $html[] = '<div class="calendar text-center">';
-        $html[] = '<table class="table">';
+        $html[] = '<table class="table border">';
         $html[] = '<thead>';
         $html[] = '<tr>';
-        $html[] = '<th>月</th>';
-        $html[] = '<th>火</th>';
-        $html[] = '<th>水</th>';
-        $html[] = '<th>木</th>';
-        $html[] = '<th>金</th>';
-        $html[] = '<th>土</th>';
-        $html[] = '<th>日</th>';
+        $html[] = '<th class="border">月</th>';
+        $html[] = '<th class="border">火</th>';
+        $html[] = '<th class="border">水</th>';
+        $html[] = '<th class="border">木</th>';
+        $html[] = '<th class="border">金</th>';
+        $html[] = '<th class=" day-sat border">土</th>';
+        $html[] = '<th class=" day-sun border">日</th>';
         $html[] = '</tr>';
         $html[] = '</thead>';
         $html[] = '<tbody>';
@@ -50,10 +50,11 @@ class CalendarView
                 $toDay = $this->carbon->copy()->format("Y-m-d");
 
                 if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
-                    $html[] = '<td class="past-day ">';
+                    // $html[] = '<td class="past-day border">';
+                    $html[] = '<td class="past-day border ' . $day->getClassName() . '">';
                     //過去日の背景色修正(cssでpast-dayのクラス名あり,元はcalendar-td)
                 } else {
-                    $html[] = '<td class="calendar-td ' . $day->getClassName() . '">';
+                    $html[] = '<td class="calendar-td border ' . $day->getClassName() . '">';
                 }
                 $html[] = $day->render();
 
@@ -102,7 +103,7 @@ class CalendarView
                     }
                     //$day->authReserveDay() で返される予約日のリストに現在の日付 ($day->everyDay()) が含まれていない場合に、「受付終了」と表示
                 } else if (!in_array($day->everyDay(), $day->authReserveDay()) && $startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
-                    $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
+                    $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px; color: #111;">受付終了</p>';
                     $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
 
                     //スクール予約部分？

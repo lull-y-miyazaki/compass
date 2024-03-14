@@ -2,7 +2,7 @@
 {{-- 予約詳細 --}}
 
 @section('content')
-    <div class="vh-100 d-flex" style="align-items:center; justify-content:center;">
+    <div class="vh-100 d-flex bottom_5" style="align-items:center; justify-content:center;">
         <div class="w-50 m-auto" style="height: 45%">
             <p><span style="font-size:18px; font-weight: bold;">{{ $date }}</span><span class="ml-3"
                     style="font-size:18px; font-weight: bold;">{{ $part }}部</span></p>

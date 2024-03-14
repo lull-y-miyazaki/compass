@@ -19,8 +19,8 @@
                             @if ($errors->first('post_title'))
                                 <span class="error_message">{{ $errors->first('post_title') }}</span></br>
                             @endif
-                            @if ($errors->first('post'))
-                                <span class="error_message">{{ $errors->first('post') }}</span></br>
+                            @if ($errors->first('post_body'))
+                                <p class="error_message">{{ $errors->first('post_body') }}</p>
                             @endif
 
                             {{-- サブカテゴリー表示 --}}
