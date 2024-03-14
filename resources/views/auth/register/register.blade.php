@@ -19,8 +19,8 @@
 <body style="background: #ECF1F6;">
 
     <form action="{{ route('registerPost') }}" method="POST">
-        <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
-            <div class="w-25 vh-75 border p-3"
+        <div class="w-100 d-flex" style="align-items:center; justify-content:center;">
+            <div class="vh-75 border p-3"
                 style=" box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); border-radius: 15px;  background-color: #fefefe">
                 <div class="register_form">
                     <div class="d-flex mt-3" style="justify-content:space-between">

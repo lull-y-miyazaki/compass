@@ -20,7 +20,9 @@
                 </div>
                 <div class="">
                     @can('admin')
-                        <span class="subject_edit_btn" onclick="toggleSubjects()" style="color: #03aad2;">選択科目の登録 V</span>
+                        <span style="font-size:12px; color: #03aad2;">選択科目の登録 </span>
+                        <span class="subject_edit_btn" onclick="toggleSubjects()" style="color: #03aad2;"><span
+                                class="toggle-subcategories" style="cursor:pointer;">V</span></span>
                         <div class="subject_inner">
                             <form action="{{ route('user.edit') }}" method="post">
                                 @foreach ($subject_lists as $subject_list)

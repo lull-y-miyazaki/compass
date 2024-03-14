@@ -2,7 +2,7 @@
 
 @section('content')
     <p>ユーザー検索</p>
-    <div class="search_content w-100 border d-flex">
+    <div class="search_content w-100 vh-100 d-flex">
         <div class="search_users_area">
             @foreach ($users as $user)
                 <div class="border one_person"
@@ -57,7 +57,7 @@
             @endforeach
         </div>
 
-        <div class="search_area w-25 border">
+        <div class="search_area w-25">
             <div class="">
                 <div>
                     <h4>検索</h4>
@@ -112,7 +112,7 @@
                             @foreach ($subjects as $subject)
                                 <option>{{ $subject->subject }}</option>
                                 {{-- radioだと複数選択できないのでcheckboxに変更 --}}
-                                <input type="checkbox" name="subject" value="{{ $subject->id }}" form="userSearchRequest"
+                                <input type="checkbox" name="subject[]" value="{{ $subject->id }}" form="userSearchRequest"
                                     style="margin-right: 10px;">
                             @endforeach
                         </div>

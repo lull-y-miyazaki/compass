@@ -157,5 +157,6 @@ return [
         'main_category_name' => 'メインカテゴリー',
         'main_category_id' => 'メインカテゴリー',
         'sub_category_name' => 'サブカテゴリー',
+        'birth_day' => '生年月日',
     ],
 ];

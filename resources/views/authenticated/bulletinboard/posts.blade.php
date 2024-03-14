@@ -1,8 +1,8 @@
 @extends('layouts.sidebar')
 
 @section('content')
-    <div class="board_area w-100 border m-auto d-flex">
-        <div class="post_view w-75 mt-5" style="margin-left: 5%">
+    <div class="board_area w-100 m-auto d-flex">
+        <div class="post_view w-75 mt-5">
             <p class="w-75 m-auto">投稿一覧</p>
             @foreach ($posts as $post)
                 <div class="post_area border w-75 m-auto p-3">
@@ -40,17 +40,19 @@
                 </div>
             @endforeach
         </div>
-        <div class="other_area border w-25" style="margin-top: 3rem;">
-            <div class="border m-4">
+        <div class="other_area w-25" style="margin-top: 3rem;">
+            <div class="m-4">
                 <div class="post_btn"><a href="{{ route('post.input') }}">投稿</a></div>
-                <div class="search_area">
+                <div class="post_search_area">
                     <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
                     <input type="submit" value="検索" form="postSearchRequest">
                 </div>
-                <input type="submit" name="like_posts" class="category_btn_like" value="いいねした投稿" form="postSearchRequest;"
-                    style="cursor:pointer;">
-                <input type="submit" name="my_posts" class="category_btn_my" value="自分の投稿" form="postSearchRequest"
-                    style="cursor:pointer;">
+                <div class="my_like">
+                    <input type="submit" name="like_posts" class="category_btn_like" value="いいねした投稿"
+                        form="postSearchRequest;" style="cursor:pointer;">
+                    <input type="submit" name="my_posts" class="category_btn_my" value="自分の投稿" form="postSearchRequest"
+                        style="cursor:pointer;">
+                </div>
 
                 {{-- サブカテゴリーでの検索 --}}
                 <div class="category_search">

@@ -43,7 +43,7 @@ class CalendarsController extends Controller
     //キャンセル機能
     public function delete(Request $request)
     {
-        dd($request);
+        // dd($request);
 
         //受け取ったデータを変数に代入
         $setting_reserve = $request->input('reserve_date');

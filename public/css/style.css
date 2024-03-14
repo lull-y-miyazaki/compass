@@ -25,10 +25,11 @@ li {
 
 /* サイドバー */
 .sidebar {
-    width: 190px;
+    width: 15%;
     height: 100vh;
     background-color: #03AAD2;
     font-weight: bold;
+    font-size: 14px;
     position: fixed;
     padding: 15px;
 }
@@ -227,6 +228,11 @@ li {
 
 .search_area {
     display: flex;
+    margin: 5%;
+}
+
+.post_search_area {
+    display: flex;
     margin: 5% 0;
 }
 
@@ -249,24 +255,51 @@ li {
     cursor: pointer;
 }
 
+.post_search_area input[type="text"] {
+    width: 150px;
+    height: 35px;
+    border-radius: 10px 0 0 10px;
+    border: 1px solid;
+    color: #9E9E9E;
+    background-color: #ECF1F6;
+    padding: 3px;
+}
+
+.post_search_area input[type="submit"] {
+    width: 50px;
+    border-radius: 0 10px 10px 0;
+    background-color: #03aad2;
+    font-size: 14px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.my_like {
+    display: flex;
+}
+
 .category_btn_like {
     font-size: 16px;
-    width: 150px;
+    width: 100px;
     height: 30px;
     border-radius: 5px;
     padding: 1px;
+    font-size: 12px;
     border: none;
     background: #e38eab;
     color: #FFF;
     text-align: center;
+    margin-right: 3px;
 }
 
 .category_btn_my {
     font-size: 16px;
-    width: 150px;
+    width: 100px;
     height: 30px;
     border-radius: 5px;
     padding: 1px;
+    font-size: 12px;
     border: none;
     background: #ebbc5d;
     color: #FFF;
@@ -298,7 +331,7 @@ li {
 
 .post_btn {
     font-size: 16px;
-    width: 300px;
+    width: 200px;
     height: 30px;
     border-radius: 5px;
     padding: 1px;
@@ -340,7 +373,7 @@ li {
     overflow: scroll;
     padding: 10px;
     border-radius: 5px;
-    margin: 0 5% 0 15%;
+    margin: 0 0 0 5%;
 }
 
 
