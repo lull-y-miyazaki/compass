@@ -46,6 +46,7 @@ class PostsController extends Controller
         } else if ($request->categories_posts) {
             //サブカテゴリーでの検索
             $sub_category = $request->categories_posts;
+            // dd($sub_category);
             $posts = Post::with('user', 'postComments')
                 ->whereHas('subCategories', function ($q) use ($sub_category) {
                     //whereHasメソッドは関連するモデルに基づいてフィルタリングに便利（※親モデルが子モデルとの関係を持っているレコードのみを取得する場合）

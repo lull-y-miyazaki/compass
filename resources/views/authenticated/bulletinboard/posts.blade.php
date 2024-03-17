@@ -49,7 +49,7 @@
                 </div>
                 <div class="my_like">
                     <input type="submit" name="like_posts" class="category_btn_like" value="いいねした投稿"
-                        form="postSearchRequest;" style="cursor:pointer;">
+                        form="postSearchRequest" style="cursor:pointer;">
                     <input type="submit" name="my_posts" class="category_btn_my" value="自分の投稿" form="postSearchRequest"
                         style="cursor:pointer;">
                 </div>
